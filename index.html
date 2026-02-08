@@ -280,5 +280,91 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
+<script>
+  (function () {
+    const FORM_ENDPOINT = "https://formspree.io/f/xzdabngb";
+
+    const form = document.getElementById("contactForm");
+    const btn = document.getElementById("contactSubmit");
+    const status = document.getElementById("formStatus");
+
+    if (!form || !btn || !status) return;
+
+    function setStatus(message, ok = true) {
+      status.textContent = message;
+      status.style.color = ok ? "#1a7f37" : "#b42318";
+    }
+
+    function validate(formData) {
+      const name = (formData.get("name") || "").toString().trim();
+      const email = (formData.get("email") || "").toString().trim();
+      const message = (formData.get("message") || "").toString().trim();
+
+      if (!name) return "Prosím doplňte jméno.";
+      if (!email) return "Prosím doplňte e-mail.";
+      // jednoduchá validace e-mailu:
+      if (!/^\S+@\S+\.\S+$/.test(email)) return "Prosím zadejte platný e-mail.";
+      if (!message) return "Prosím napište zprávu.";
+      return null;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // zabránění dvojkliku
+      if (btn.disabled) return;
+
+      const formData = new FormData(form);
+
+      // lokální validace pro lepší UX
+      const validationError = validate(formData);
+      if (validationError) {
+        setStatus("❌ " + validationError, false);
+        return;
+      }
+
+      // honeypot: pokud bot něco vyplní, tváříme se jako úspěch a nic neposíláme
+      const gotcha = (formData.get("_gotcha") || "").toString().trim();
+      if (gotcha) {
+        setStatus("✅ Děkujeme! Ozveme se co nejdříve.");
+        form.reset();
+        return;
+      }
+
+      btn.disabled = true;
+      const originalText = btn.textContent;
+      btn.textContent = "Odesílám…";
+      setStatus("");
+
+      try {
+        const res = await fetch(FORM_ENDPOINT, {
+          method: "POST",
+          body: formData,
+          headers: { "Accept": "application/json" }
+        });
+
+        if (res.ok) {
+          setStatus("✅ Děkujeme! Ozveme se co nejdříve.");
+          form.reset();
+        } else {
+          // zkusíme přečíst chybu z JSON
+          let errMsg = "❌ Nepodařilo se odeslat. Zkuste to prosím znovu.";
+          try {
+            const data = await res.json();
+            if (data && data.errors && data.errors.length) {
+              errMsg = "❌ " + data.errors.map(e => e.message).join(" ");
+            }
+          } catch (_) {}
+          setStatus(errMsg, false);
+        }
+      } catch (err) {
+        setStatus("❌ Chyba připojení. Zkuste to prosím znovu.", false);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = originalText;
+      }
+    });
+  })();
+</script>
 </body>
 </html>

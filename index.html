@@ -229,16 +229,26 @@
                  1) založ si zdarma Formspree (formspree.io)
                  2) vytvoř nový form a zkopíruj endpoint ve tvaru https://formspree.io/f/XXXXYYYY
                  3) nahraď níže PLACEHOLDER -->
-            <form action="https://formspree.io/f/xzdabngb" method="POST">
-              <input type="text" name="name" placeholder="Jméno" required />
-              <input type="email" name="email" placeholder="E-mail" required />
-              <input type="text" name="topic" placeholder="Téma (např. rodinný dům / SVJ / dotace…)" />
-              <textarea name="message" placeholder="Co řešíte? (stav domu, lokalita, plán renovace, termín…)" required></textarea>
-              <button type="submit">Odeslat</button>
-              <p class="note">
-                Odesláním souhlasíte se zpracováním údajů za účelem odpovědi na váš dotaz.
-              </p>
-            </form>
+            <form id="contactForm" novalidate>
+  <input type="text" name="name" placeholder="Jméno" autocomplete="name" required />
+  <input type="email" name="email" placeholder="E-mail" autocomplete="email" required />
+  <input type="text" name="topic" placeholder="Téma (např. rodinný dům / SVJ / dotace…)" />
+  <textarea name="message" placeholder="Co řešíte? (stav domu, lokalita, plán renovace, termín…)" required></textarea>
+
+  <!-- Volitelné: předmět e-mailu (Formspree ho umí) -->
+  <input type="hidden" name="_subject" value="Nový dotaz – renovacnipasbudovy.cz" />
+
+  <!-- Honeypot proti spamu (skryté pole, člověk ho nevyplní) -->
+  <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+  <button id="contactSubmit" type="submit">Odeslat</button>
+
+  <p id="formStatus" class="note" role="status" aria-live="polite" style="margin:6px 0 0;"></p>
+
+  <p class="note">
+    Odesláním souhlasíte se zpracováním údajů za účelem odpovědi na váš dotaz.
+  </p>
+</form>
           </div>
 
           <div class="card">

@@ -290,10 +290,29 @@
 
     if (!form || !btn || !status) return;
 
-    function setStatus(message, ok = true) {
-      status.textContent = message;
-      status.style.color = ok ? "#1a7f37" : "#b42318";
-    }
+  function setStatus(message, ok = true) {
+  if (!message) {
+    status.textContent = "";
+    status.style.background = "transparent";
+    return;
+  }
+
+  status.textContent = message;
+
+  // barvy podle úspěchu / chyby
+  status.style.color = ok ? "#1a7f37" : "#b42318";
+  status.style.background = ok ? "rgba(26,127,55,0.08)" : "rgba(180,35,24,0.08)";
+
+  // scroll na hlášku
+  status.scrollIntoView({ behavior: "smooth", block: "center" });
+
+  // krátký highlight efekt
+  status.style.transition = "transform 0.2s ease";
+  status.style.transform = "scale(1.02)";
+  setTimeout(() => {
+    status.style.transform = "scale(1)";
+  }, 250);
+}
 
     function validate(formData) {
       const name = (formData.get("name") || "").toString().trim();

@@ -23,8 +23,11 @@
   <style>
   :root{
     --vp-navy:#0B1B3A;
-    --vp-blue:#1F6FEB;
-    --vp-blue-2:#2B79FF;
+
+    /* nový hlavní akcent */
+    --vp-red:#c00f0a;
+    --vp-red-2:#ff3b30;
+
     --vp-bg:#F6F8FC;
     --vp-card:#FFFFFF;
     --vp-text:#0E1116;
@@ -33,9 +36,9 @@
     --radius:16px;
     --shadow: 0 12px 30px rgba(11,27,58,.08);
 
-    /* jemné “brand tint” pro oživení */
-    --vp-tint: rgba(31,111,235,.06);
-    --vp-tint-2: rgba(43,121,255,.05);
+    /* jemný tint pro “oživení”, v červené */
+    --vp-tint: rgba(192,15,10,.06);
+    --vp-tint-2: rgba(255,59,48,.04);
   }
 
   *{ box-sizing:border-box; }
@@ -50,11 +53,10 @@
 
   .wrap{ max-width:1040px; margin:0 auto; padding:0 18px; }
 
-  /* HERO (VIAPOWER-like) */
+  /* HERO */
   header{
     padding:72px 0 44px;
     min-height: 52vh;
-
     background:
       linear-gradient(
         rgba(10,20,40,0.72),
@@ -83,9 +85,11 @@
     line-height:1.05;
     letter-spacing:-0.02em;
   }
+
+  /* HERO text širší */
   header p{
     margin:0;
-    max-width:640px;
+    max-width:760px; /* bylo 640px */
     color:rgba(255,255,255,.86);
     font-size: clamp(16px, 1.6vw, 19px);
   }
@@ -102,15 +106,18 @@
     transition: transform .15s ease, box-shadow .15s ease, filter .15s ease, background .15s ease, border-color .15s ease;
     user-select:none;
   }
+
+  /* primary v červené */
   .btn.primary{
-    background:linear-gradient(135deg, var(--vp-blue), var(--vp-blue-2));
+    background:linear-gradient(135deg, var(--vp-red), var(--vp-red-2));
     color:#fff;
-    box-shadow: 0 10px 22px rgba(31,111,235,.25);
+    box-shadow: 0 10px 22px rgba(192,15,10,.22);
   }
   .btn.primary:hover{
     transform:translateY(-1px);
     filter: brightness(1.05);
   }
+
   .btn.secondary{
     background:rgba(255,255,255,.10);
     color:#fff;
@@ -133,34 +140,18 @@
   .grid{ display:grid; grid-template-columns:1fr; gap:14px; }
   @media (min-width:900px){ .grid{ grid-template-columns:1fr 1fr; } }
 
-  /* KROK 2: karty dostanou “top gradient bar” + decentní hover */
+  /* KARTY – bez horní linky, jen gradient */
   .card{
-    position:relative;
-    background:var(--vp-card);
+    background: linear-gradient(180deg, var(--vp-tint), #fff 45%);
     border:1px solid var(--vp-border);
     border-radius:var(--radius);
     padding:18px;
     box-shadow: var(--shadow);
-    overflow:hidden;
     transition: transform .15s ease, box-shadow .15s ease;
   }
   .card:hover{
     transform: translateY(-2px);
     box-shadow: 0 16px 36px rgba(11,27,58,.10);
-  }
-
-  .card::before{
-    content:"";
-    position:absolute;
-    inset:0 0 auto 0;
-    height:4px;
-    background: linear-gradient(90deg, var(--vp-blue), var(--vp-blue-2));
-    opacity:.9;
-  }
-
-  /* KROK 2: tinted varianta (jemně obarví pozadí) */
-  .card.tinted{
-    background: linear-gradient(180deg, var(--vp-tint), #fff 45%);
   }
 
   .card h3{
@@ -175,40 +166,19 @@
   .note{ font-size:14px; color:rgba(255,255,255,.75); }
   .note.dark{ color:var(--vp-muted); }
 
-  /* KROK 1: section visual (timeline) */
-  .section-visual{
-    width:100%;
-    height:auto;
-    margin: 10px 0 18px;
-    border-radius: 18px;
-    border: 1px solid var(--vp-border);
-    box-shadow: var(--shadow);
-    background:#fff;
-  }
-
-  /* KROK 3: ikonky v bubble */
+  /* IKONY – jen obrázek, bez “buttonu” */
   .card--icon { position: relative; }
   .card__icon{
     width:44px;
     height:44px;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    margin:0 0 12px;
-    padding:10px;
-    border-radius:14px;
-    background: rgba(31,111,235,.08);
-    border:1px solid rgba(31,111,235,.14);
-  }
-  .card__icon img{
-    width:24px;
-    height:24px;
     display:block;
+    margin:0 0 12px;
+    opacity:.95;
   }
 
   /* FAQ */
   .faq details{
-    background:var(--vp-card);
+    background: linear-gradient(180deg, var(--vp-tint-2), #fff 55%);
     border:1px solid var(--vp-border);
     border-radius:14px;
     padding:12px 14px;
@@ -217,9 +187,25 @@
   }
   .faq summary{ cursor:pointer; font-weight:800; }
 
-  /* VIAPOWER block */
-  #viapower .card{
-    background: linear-gradient(180deg, rgba(11,27,58,.04), rgba(11,27,58,.02));
+  /* Kontakt – layout pro “Co nám pomůže vědět” s obrázkem */
+  .card--twoCol{
+    display:grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap:16px;
+    align-items:start;
+  }
+  @media (max-width:900px){
+    .card--twoCol{ grid-template-columns:1fr; }
+  }
+
+  .side-visual{
+    width:100%;
+    height:auto;
+    border-radius:14px;
+    border:1px solid var(--vp-border);
+    box-shadow: 0 12px 26px rgba(11,27,58,.08);
+    background:#fff;
+    display:block;
   }
 
   /* Form */
@@ -322,19 +308,16 @@
       <section id="co-to-je">
         <h2>Co je renovační pas a k čemu vám bude</h2>
 
-        <!-- KROK 1: section visual (timeline) -->
-        <img
-          src="assets/img/timeline-renovace.webp"
-          alt="Renovace krok za krokem: opatření a pořadí kroků"
-          class="section-visual"
-          loading="lazy"
-        />
-
         <div class="grid">
-          <div class="card tinted card--icon">
-            <span class="card__icon" aria-hidden="true">
-              <img src="assets/img/icon-roadmap-512.webp" alt="" loading="lazy" />
-            </span>
+          <div class="card card--icon">
+            <img
+              class="card__icon"
+              src="assets/img/icon-roadmap-512.webp"
+              width="44"
+              height="44"
+              alt="Ikona – přehledný plán renovace"
+              loading="lazy"
+            />
             <h3>Ne „další papír do šuplíku“</h3>
             <p class="muted">
               Renovační pas je komunikační a plánovací nástroj pro vlastníka budovy:
@@ -342,10 +325,15 @@
             </p>
           </div>
 
-          <div class="card tinted card--icon">
-            <span class="card__icon" aria-hidden="true">
-              <img src="assets/img/icon-plan-512.webp" alt="" loading="lazy" />
-            </span>
+          <div class="card card--icon">
+            <img
+              class="card__icon"
+              src="assets/img/icon-plan-512.webp"
+              width="44"
+              height="44"
+              alt="Ikona – projekt a návrh renovace"
+              loading="lazy"
+            />
             <h3>Průvodce domem</h3>
             <p class="muted">
               Typicky obsahuje cílový stav, doporučené kroky renovace, odhad nákladů,
@@ -357,7 +345,7 @@
 
       <section id="kdo">
         <h2>Kdo může renovační pas vypracovat</h2>
-        <div class="card tinted">
+        <div class="card">
           <p class="muted">
             Renovační pas je odborný dokument. V praxi se počítá se zpracováním kvalifikovanou osobou,
             typicky:
@@ -376,28 +364,28 @@
       <section id="proc">
         <h2>Co z toho máte a proč byste to měli chtít</h2>
         <div class="grid">
-          <div class="card tinted">
+          <div class="card">
             <h3>Jasné pořadí kroků</h3>
             <p class="muted">
               Získáte plán „co dává největší smysl“ – typicky tak, aby se opatření doplňovala,
               ne aby se později předělávalo (např. zateplení vs. technologie).
             </p>
           </div>
-          <div class="card tinted">
+          <div class="card">
             <h3>Odhad úspor a návratnosti</h3>
             <p class="muted">
               Uvidíte odhad dopadu na spotřebu energie, náklady i návratnost.
               To pomůže rozhodnout, co dělat hned a co odložit.
             </p>
           </div>
-          <div class="card tinted">
+          <div class="card">
             <h3>Podklad pro dotace a financování</h3>
             <p class="muted">
               Smyslem je zjednodušit orientaci v přípravě renovace a podpoře – a mít přehledný podklad,
               který je „pro člověka“, ne jen pro úřad.
             </p>
           </div>
-          <div class="card tinted">
+          <div class="card">
             <h3>Klid v rozhodování</h3>
             <p class="muted">
               Když máte plán, lépe vyberete dodavatele, snáz porovnáte nabídky a minimalizujete riziko,
@@ -437,7 +425,7 @@
 
       <section id="viapower">
         <h2>Vazba na VIAPOWER</h2>
-        <div class="card tinted">
+        <div class="card">
           <p class="muted">
             Tým <strong>VIAPOWER</strong> se dlouhodobě věnuje modernizaci domácností a energetickému managementu
             (fotovoltaika, baterie, řízení spotřeby, poradenství). Tento web budujeme jako jednoduché informační místo,
@@ -449,7 +437,7 @@
       <section id="kontakt">
         <h2>Kontakt / zájem o konzultaci</h2>
         <div class="grid">
-          <div class="card tinted">
+          <div class="card">
             <h3>Napište nám</h3>
 
             <form id="contactForm" novalidate>
@@ -471,17 +459,26 @@
             </form>
           </div>
 
-          <div class="card tinted">
-            <h3>Co nám pomůže vědět</h3>
-            <ul>
-              <li>typ objektu (RD / bytový dům / SVJ),</li>
-              <li>zda plánujete zateplení, okna, zdroj tepla, FV, baterii,</li>
-              <li>časový horizont (teď / 6 měsíců / 1–2 roky),</li>
-              <li>jestli zvažujete dotaci (NZÚ / NZÚ Light apod.).</li>
-            </ul>
-            <p class="note dark" style="margin-top:10px;">
-              Pokud chceš, doplníme sem i jednoduchý „lead magnet“ (PDF checklist) pro lepší SEO a sběr poptávek.
-            </p>
+          <!-- Upravené: bez interního komentáře + doplněný obrázek -->
+          <div class="card card--twoCol">
+            <div>
+              <h3>Co nám pomůže vědět</h3>
+              <ul>
+                <li>typ objektu (RD / bytový dům / SVJ),</li>
+                <li>zda plánujete zateplení, okna, zdroj tepla, FV, baterii,</li>
+                <li>časový horizont (teď / 6 měsíců / 1–2 roky),</li>
+                <li>jestli zvažujete dotaci (NZÚ / NZÚ Light apod.).</li>
+              </ul>
+            </div>
+
+            <div>
+              <img
+                class="side-visual"
+                src="assets/img/kontakt-checklist.webp"
+                alt="Ilustrace: dům a checklist k přípravě renovace"
+                loading="lazy"
+              />
+            </div>
           </div>
         </div>
       </section>

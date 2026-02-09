@@ -295,7 +295,24 @@
   display:flex;
   align-items:center;
 }
-  
+  /* ===== REFsite widget – čistý, bez rámečku ===== */
+
+.rating-embed--refsite{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:0;               /* žádné vnitřní okraje */
+}
+
+.rating-iframe--refsite{
+  width: 260px;             /* ideální šířka widgetu */
+  height: 88px;
+  border:0;
+  overflow:hidden;
+
+  /* hack: schová vnitřní rámeček refsite */
+  clip-path: inset(6px 6px 6px 6px);
+}
   </style>
 
   <!-- FAQ structured data (pomáhá SEO) -->
@@ -562,13 +579,13 @@
     <div class="card rating-card">
       <h3>Refsite</h3>
       <!-- SEM VLOŽÍŠ REFSITE WIDGET KÓD -->
-      <div class="rating-embed rating-embed--center" id="rating-refsite">
+      <div class="rating-embed rating-embed--refsite">
   <iframe
-    src="https://widgets.refsite.info/widget2/viapower/3?color1=386fb1&color2=ffffff"
+    src="https://widgets.refsite.info/widget2/viapower/3?color1=c00f0a&color2=ffffff"
     title="Hodnocení VIAPOWER na Refsite"
     loading="lazy"
     referrerpolicy="no-referrer-when-downgrade"
-    class="rating-iframe"
+    class="rating-iframe rating-iframe--refsite"
   ></iframe>
 </div>
     </div>

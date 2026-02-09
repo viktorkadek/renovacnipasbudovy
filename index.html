@@ -69,8 +69,14 @@
       border-bottom:1px solid rgba(255,255,255,.08);
     }
 
+    /* HERO – větší vertikální mezery */
+    header .wrap{
+      display:flex;
+      flex-direction:column;
+    }
+
     h1{
-      margin:0 0 14px;
+      margin:0 0 22px; /* větší mezera pod nadpisem */
       font-size: clamp(2.4rem, 5vw, 3.6rem);
       line-height:1.05;
       letter-spacing:-0.02em;
@@ -84,7 +90,18 @@
       font-size: clamp(16px, 1.6vw, 19px);
     }
 
-    .cta{ margin-top:18px; display:flex; flex-wrap:wrap; gap:10px; }
+    /* oddělení popisu od pills */
+    header p.lead{
+      margin-bottom:22px;
+    }
+
+    .cta{
+      margin-top:0;          /* řídíme to přes .lead */
+      margin-bottom:18px;    /* mezera mezi pills a poznámkou */
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
 
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
@@ -155,6 +172,9 @@
 
     .note{ font-size:14px; color:rgba(255,255,255,.75); }
     .note.dark{ color:var(--vp-muted); }
+
+    /* Poznámka v hero kurzívou */
+    .note-italic{ font-style: italic; }
 
     /* IKONY – jen obrázek, bez “buttonu” */
     .card--icon { position: relative; }
@@ -277,7 +297,8 @@
     <div class="wrap">
       <!-- badge/pill smazán dle zadání -->
       <h1>Renovační pas budovy</h1>
-      <p>
+
+      <p class="lead">
         Srozumitelný plán renovace krok za krokem: co má smysl udělat, v jakém pořadí, kolik to může stát
         a jaké úspory a návratnost můžete očekávat.
       </p>
@@ -289,7 +310,7 @@
         <a class="btn secondary" href="#proc">Proč ho chtít</a>
       </div>
 
-      <p class="note" style="margin-top:14px;">
+      <p class="note note-italic" style="margin-top:0;">
         Pozn.: Informace na webu průběžně aktualizujeme podle oficiálního vývoje. Nejde o právní poradenství.
       </p>
     </div>

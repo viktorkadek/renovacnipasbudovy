@@ -154,6 +154,16 @@ header{
   .card h3{ margin:0 0 8px; font-size:18px; letter-spacing:-0.01em; }
   .muted{ color:var(--vp-muted); }
 
+.card--icon { position: relative; }
+.card__icon{
+  width:72px;
+  height:72px;
+  display:block;
+  margin:0 0 10px;
+  filter: drop-shadow(0 10px 18px rgba(11,27,58,.12));
+  opacity:.95;
+}
+
   ul{ margin:10px 0 0; padding-left:18px; }
 
   .note{ font-size:14px; color:rgba(255,255,255,.75); }
@@ -271,26 +281,47 @@ header{
 
   <main>
     <div class="wrap">
+<section id="co-to-je">
+  <h2>Co to je a k čemu to bude sloužit</h2>
 
-      <section id="co-to-je">
-        <h2>Co to je a k čemu to bude sloužit</h2>
-        <div class="grid">
-          <div class="card">
-            <h3>Ne „další papír do šuplíku“</h3>
-            <p class="muted">
-              Renovační pas je komunikační a plánovací nástroj pro vlastníka budovy:
-              převádí technické možnosti do srozumitelného plánu, který se dá řešit postupně.
-            </p>
-          </div>
-          <div class="card">
-            <h3>Průvodce domem</h3>
-            <p class="muted">
-              Typicky obsahuje cílový stav, doporučené kroky renovace, odhad nákladů,
-              očekávané úspory a přehled možností financování/dotací.
-            </p>
-          </div>
-        </div>
-      </section>
+  <div class="grid">
+    <div class="card card--icon">
+      <img
+        class="card__icon"
+        src="assets/img/icon-roadmap-512.webp"
+        srcset="assets/img/icon-roadmap-512.webp 512w, assets/img/icon-roadmap-768.webp 768w"
+        sizes="72px"
+        width="72"
+        height="72"
+        alt="Ikona – přehledný plán renovace"
+        loading="lazy"
+      />
+      <h3>Ne „další papír do šuplíku“</h3>
+      <p class="muted">
+        Renovační pas je komunikační a plánovací nástroj pro vlastníka budovy:
+        převádí technické možnosti do srozumitelného plánu, který se dá řešit postupně.
+      </p>
+    </div>
+
+    <div class="card card--icon">
+      <img
+        class="card__icon"
+        src="assets/img/icon-plan-512.webp"
+        srcset="assets/img/icon-plan-512.webp 512w, assets/img/icon-plan-768.webp 768w"
+        sizes="72px"
+        width="72"
+        height="72"
+        alt="Ikona – projekt a návrh renovace"
+        loading="lazy"
+      />
+      <h3>Průvodce domem</h3>
+      <p class="muted">
+        Typicky obsahuje cílový stav, doporučené kroky renovace, odhad nákladů,
+        očekávané úspory a přehled možností financování/dotací.
+      </p>
+    </div>
+  </div>
+</section>
 
       <section id="kdo">
         <h2>Kdo může renovační pas vypracovat</h2>

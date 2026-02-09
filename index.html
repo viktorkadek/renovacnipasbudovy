@@ -275,6 +275,27 @@
     display: block;
   }
 }
+  
+  .ratings-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+}
+@media (min-width:900px){
+  .ratings-grid{ grid-template-columns:1fr 1fr 1fr; }
+}
+
+.rating-card h3{
+  margin:0 0 10px;
+  font-size:16px;
+}
+
+.rating-embed{
+  min-height:72px; /* aby karta neměla nulovou výšku, než se načte widget */
+  display:flex;
+  align-items:center;
+}
+  
   </style>
 
   <!-- FAQ structured data (pomáhá SEO) -->

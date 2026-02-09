@@ -255,6 +255,26 @@
       background:#fff;
     }
     small{ color:#6B7280; }
+ /* === FIX: mobil – obrázek nesmí překrývat text === */
+@media (max-width: 700px){
+  .help-card{
+    min-height: auto;      /* zruší pevnou výšku */
+  }
+
+  .help-illustration{
+    position: static;      /* už není absolutní */
+    max-width: 240px;      /* velikost obrázku na mobilu */
+    margin: 14px auto 0;   /* pod text, vycentrovat */
+    filter: none;
+    opacity: 1;
+  }
+
+  .help-illustration img{
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
   </style>
 
   <!-- FAQ structured data (pomáhá SEO) -->

@@ -313,6 +313,20 @@
   /* hack: schová vnitřní rámeček refsite */
   clip-path: inset(6px 6px 6px 6px);
 }
+
+    .rating-link{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-top:12px;
+}
+
+.rating-link img{
+  max-width:220px;
+  height:auto;
+  border:none;
+  box-shadow:none;
+}
   </style>
 
   <!-- FAQ structured data (pomáhá SEO) -->
@@ -590,13 +604,29 @@
 
     <!-- FIRMY.CZ -->
     <div class="card rating-card">
-      <h3>Firmy.cz</h3>
+  <h3>Firmy.cz</h3>
 
-      <!-- ZDE PAK VLOŽÍŠ OFICIÁLNÍ WIDGET OD FIRMY.CZ -->
-      <div class="rating-embed" id="rating-firmycz">
-        <p class="muted">Hodnocení z Firmy.cz se načítá…</p>
-      </div>
-    </div>
+  <p class="muted rating-stars">
+    ⭐⭐⭐⭐⭐ <strong>Hodnocení na Firmy.cz</strong>
+  </p>
+
+  <a
+    href="https://www.firmy.cz/detail/13329710-viapower-horousany.html#hodnoceni"
+    target="_blank"
+    rel="noopener"
+    class="rating-link"
+  >
+    <img
+      src="https://www.firmy.cz/img-stars/light-13329710.svg"
+      alt="VIAPOWER na Firmy.cz"
+      loading="lazy"
+    />
+  </a>
+
+  <p class="muted" style="margin-top:10px;">
+    Odkaz vede přímo na hodnocení zákazníků VIAPOWER na Firmy.cz.
+  </p>
+</div>
 
     <!-- REFSITE -->
     <div class="card rating-card">

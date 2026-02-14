@@ -1,62 +1,367 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <title>Renovační pas a dotace NZÚ: jak spolu souvisí | VIAPOWER</title>
-  <meta name="description" content="Jak renovační pas souvisí s dotacemi Nová zelená úsporám? Praktický přehled pro majitele domů i SVJ.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link rel="canonical" href="https://renovacnipasbudovy.cz/renovacni-pas-dotace" />
+  <title>Renovační pas a dotace NZÚ – jak spolu souvisí | VIAPOWER</title>
+  <meta name="description" content="Jak může renovační pas budovy pomoci s dotacemi NZÚ (Nová zelená úsporám)? Co si připravit, jaké kroky dávají smysl a proč je plán renovace výhoda." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://renovacnipasbudovy.cz/renovacni-pas-dotace.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Renovační pas a dotace NZÚ – jak spolu souvisí | VIAPOWER" />
+  <meta property="og:description" content="Prakticky: jak může renovační pas pomoci s přípravou dotací (NZÚ) a plánem renovace krok za krokem." />
+  <meta property="og:url" content="https://renovacnipasbudovy.cz/renovacni-pas-dotace.html" />
+
+  <style>
+    :root{
+      --vp-navy:#0B1B3A;
+
+      /* akcent (stejný jako homepage) */
+      --vp-red:#c00f0a;
+      --vp-red-2:#ff3b30;
+
+      --vp-bg:#F6F8FC;
+      --vp-card:#FFFFFF;
+      --vp-text:#0E1116;
+      --vp-muted:#4B5563;
+      --vp-border:#E6EAF2;
+      --radius:16px;
+      --shadow: 0 12px 30px rgba(11,27,58,.08);
+
+      --vp-tint: rgba(192,15,10,.06);
+      --vp-tint-2: rgba(255,59,48,.04);
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--vp-text);
+      background:var(--vp-bg);
+      line-height:1.6;
+    }
+    a{ color:inherit; }
+
+    .wrap{ max-width:1040px; margin:0 auto; padding:0 18px; }
+
+    /* HERO */
+    header{
+      padding:72px 0 44px;
+      min-height: 48vh;
+      background:
+        linear-gradient(
+          rgba(10,20,40,0.72),
+          rgba(10,20,40,0.86)
+        ),
+        url("assets/img/hero-renovacni-pas.webp") center / cover no-repeat;
+
+      color:#fff;
+      display:flex;
+      align-items:center;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    h1{
+      margin:0 0 18px;
+      font-size: clamp(2.1rem, 4.6vw, 3.2rem);
+      line-height:1.05;
+      letter-spacing:-0.02em;
+      max-width: 920px;
+    }
+
+    header p{
+      margin:0;
+      max-width:780px;
+      color:rgba(255,255,255,.86);
+      font-size: clamp(16px, 1.6vw, 19px);
+    }
+
+    .cta{ margin-top:22px; display:flex; flex-wrap:wrap; gap:10px; }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 18px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:800;
+      border:1px solid transparent;
+      transition: transform .15s ease, box-shadow .15s ease, filter .15s ease, background .15s ease, border-color .15s ease;
+      user-select:none;
+      white-space: nowrap;
+    }
+
+    .btn.primary{
+      background:linear-gradient(135deg, var(--vp-red), var(--vp-red-2));
+      color:#fff;
+      box-shadow: 0 10px 22px rgba(192,15,10,.22);
+    }
+    .btn.primary:hover{ transform:translateY(-1px); filter: brightness(1.05); }
+
+    .btn.secondary{
+      background:rgba(255,255,255,.10);
+      color:#fff;
+      border-color:rgba(255,255,255,.22);
+    }
+    .btn.secondary:hover{ transform:translateY(-1px); background:rgba(255,255,255,.14); }
+
+    .note{
+      font-size:14px;
+      color:rgba(255,255,255,.78);
+      margin-top:18px;
+      font-style: italic;
+      max-width: 860px;
+    }
+
+    main{ padding:34px 0 62px; }
+    section{ margin-top:28px; }
+
+    h2{
+      font-size:22px;
+      letter-spacing:-0.015em;
+      margin:0 0 14px;
+    }
+
+    .grid{ display:grid; grid-template-columns:1fr; gap:14px; }
+    @media (min-width:900px){ .grid{ grid-template-columns:1fr 1fr; } }
+
+    .card{
+      background: linear-gradient(180deg, var(--vp-tint), #fff 45%);
+      border:1px solid var(--vp-border);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow: var(--shadow);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px rgba(11,27,58,.10);
+    }
+
+    .muted{ color:var(--vp-muted); }
+    ul{ margin:10px 0 0; padding-left:18px; }
+
+    .callout{
+      border-radius: var(--radius);
+      border: 1px solid rgba(192,15,10,.18);
+      background: linear-gradient(180deg, rgba(192,15,10,.08), #fff 58%);
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .mini-nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+    }
+    .pill{
+      display:inline-flex;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--vp-border);
+      background:#fff;
+      text-decoration:none;
+      font-weight:700;
+      color: var(--vp-text);
+    }
+    .pill:hover{
+      border-color: rgba(192,15,10,.25);
+      box-shadow: 0 10px 18px rgba(11,27,58,.06);
+      transform: translateY(-1px);
+    }
+
+    footer{
+      padding:22px 0;
+      border-top:1px solid var(--vp-border);
+      background:#fff;
+    }
+    small{ color:#6B7280; }
+    small a{ color: inherit; font-weight: 700; text-decoration: none; border-bottom: 1px solid rgba(0,0,0,.15); }
+    small a:hover{ border-bottom-color: rgba(192,15,10,.55); }
+  </style>
 </head>
 
-<body style="font-family:Inter, sans-serif; max-width:900px; margin:40px auto; padding:0 20px; line-height:1.6;">
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Renovační pas a dotace NZÚ: proč se vyplatí mít plán renovace připravený</h1>
+      <p>
+        Renovační pas (jakmile bude v praxi plně zaveden) má dávat smysl i z pohledu financování:
+        pomáhá ujasnit si postup renovace, připravit podklady a lépe navázat na podporu typu NZÚ.
+      </p>
 
-  <h1>Renovační pas a dotace: jak spolu souvisí</h1>
+      <div class="cta">
+        <a class="btn primary" href="#kontakt">Chci konzultaci</a>
+        <a class="btn secondary" href="index.html#proc">Zpět: proč pas chtít</a>
+        <a class="btn secondary" href="index.html">Zpět na homepage</a>
+      </div>
 
-  <p>
-    Renovační pas pomáhá vlastníkům budov naplánovat renovaci tak,
-    aby jednotlivá opatření dávala smysl nejen technicky,
-    ale také z pohledu financování a dotací.
-  </p>
+      <p class="note">
+        Pozn.: Informace na webu průběžně aktualizujeme podle oficiálního vývoje. Nejde o právní poradenství ani závazný výklad podmínek dotací.
+      </p>
+    </div>
+  </header>
 
-  <h2>Jak renovační pas souvisí s dotací Nová zelená úsporám</h2>
+  <main>
+    <div class="wrap">
 
-  <p>
-    Program Nová zelená úsporám podporuje komplexní a promyšlené renovace.
-    Renovační pas slouží jako přehledný plán kroků,
-    který pomáhá rozhodnout, jaká opatření realizovat,
-    v jakém pořadí a s jakým očekávaným přínosem.
-  </p>
+      <section id="shrnutí">
+        <h2>Rychlé shrnutí</h2>
+        <div class="callout">
+          <p class="muted" style="margin:0;">
+            <strong>Renovační pas ≠ dotace</strong>, ale typicky funguje jako <strong>praktický plán</strong>,
+            který usnadní rozhodování a přípravu kroků tak, aby dávaly smysl i při využití podpory
+            (např. NZÚ – Nová zelená úsporám).
+          </p>
 
-  <h2>Je renovační pas podmínkou pro dotaci?</h2>
+          <div class="mini-nav" aria-label="Rychlé přechody">
+            <a class="pill" href="#jak-pomaha">Jak pas pomáhá</a>
+            <a class="pill" href="#co-pripravit">Co si připravit</a>
+            <a class="pill" href="#typicke-kroky">Typické kroky</a>
+            <a class="pill" href="#kontakt">Kontakt</a>
+          </div>
+        </div>
+      </section>
 
-  <p>
-    V současnosti renovační pas není povinnou přílohou žádosti,
-    ale jeho význam roste.
-    Pomáhá sladit technická opatření s dotačními podmínkami
-    a předejít neefektivním investicím.
-  </p>
+      <section id="jak-pomaha">
+        <h2>Jak může renovační pas pomoct s dotacemi NZÚ</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>1) Dává pořadí kroků</h3>
+            <p class="muted">
+              Dotace často řeší konkrétní opatření (zateplení, okna, zdroj tepla, FV…).
+              Pas pomáhá poskládat kroky tak, aby na sebe navazovaly a nic se zbytečně nepředělávalo.
+            </p>
+          </div>
 
-  <h2>Pro koho má kombinace renovačního pasu a dotace největší smysl</h2>
+          <div class="card">
+            <h3>2) Pomáhá s podklady a logikou renovace</h3>
+            <p class="muted">
+              Když máte v ruce plán, snáz se připraví nabídky od dodavatelů, rozpočet, harmonogram a dokumentace.
+              Celý proces je pak „čistší“ a rychlejší.
+            </p>
+          </div>
 
-  <ul>
-    <li>majitelé rodinných domů plánující postupnou renovaci,</li>
-    <li>SVJ a bytové domy řešící větší modernizaci,</li>
-    <li>domy kombinující zateplení, zdroj tepla a fotovoltaiku.</li>
-  </ul>
+          <div class="card">
+            <h3>3) Urychluje rozhodování</h3>
+            <p class="muted">
+              Přesně víte, co chcete řešit první a proč. To je praktické i při výběru dodavatele
+              a při rozhodování, jestli jít cestou jedné větší renovace nebo postupně.
+            </p>
+          </div>
 
-  <p>
-    Renovační pas tak funguje jako praktický průvodce,
-    který pomáhá využít dotace chytře a dlouhodobě.
-  </p>
+          <div class="card">
+            <h3>4) Pomůže sladit renovaci s rozpočtem</h3>
+            <p class="muted">
+              Dotace jsou jen část financování. Dobrý plán umožní rozdělit investici do etap,
+              vybrat „nejlepší poměr cena/výkon“ a hlídat návratnost.
+            </p>
+          </div>
+        </div>
+      </section>
 
-  <hr>
+      <section id="co-pripravit">
+        <h2>Co si (typicky) připravit, než to začnete řešit</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Základní info o budově</h3>
+            <ul class="muted">
+              <li>typ objektu (RD / bytový dům / SVJ),</li>
+              <li>lokalita, velikost, počet bytových jednotek,</li>
+              <li>současné vytápění a ohřev vody.</li>
+            </ul>
+          </div>
 
-  <p>
-    ← Zpět na hlavní stránku:
-    <a href="index.html"><strong>Renovační pas budovy</strong></a>
-  </p>
+          <div class="card">
+            <h3>Plánované kroky</h3>
+            <ul class="muted">
+              <li>zateplení, okna/dveře, střecha,</li>
+              <li>zdroj tepla (TČ / kotel),</li>
+              <li>fotovoltaika, baterie, řízení spotřeby.</li>
+            </ul>
+          </div>
 
+          <div class="card">
+            <h3>Časový horizont</h3>
+            <p class="muted">
+              Chcete řešit letos, do 6 měsíců, nebo v horizontu 1–2 let?
+              Časování často rozhoduje o tom, jakou strategii zvolit.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Rozpočet a priority</h3>
+            <p class="muted">
+              Rozpočet určuje, zda udělat „maximum“ najednou, nebo etapově.
+              I etapová renovace může být velmi efektivní, když má dobré pořadí.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="typicke-kroky">
+        <h2>Typické pořadí kroků (orientačně)</h2>
+        <div class="card">
+          <p class="muted" style="margin-top:0;">
+            Obecně se dává smysl řešit nejdřív obálku (zateplení/okna), až potom technologie.
+            Konkrétní pořadí ale vždy závisí na stavu domu a cílech.
+          </p>
+          <ul class="muted">
+            <li>1) Diagnostika / návrh – co a proč dělat</li>
+            <li>2) Obálka budovy – zateplení, okna, střecha</li>
+            <li>3) Vytápění a ohřev vody – optimalizace zdroje</li>
+            <li>4) Fotovoltaika + baterie + řízení spotřeby</li>
+            <li>5) Doladění a měření – aby úspory byly reálné</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="kontakt">
+        <h2>Chcete to probrat?</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Rychlá konzultace</h3>
+            <p class="muted">
+              Napište nám, co řešíte (typ objektu, lokalita, kroky renovace, horizont). Ozveme se a navrhneme další postup.
+            </p>
+            <div class="cta" style="margin-top:14px;">
+              <a class="btn primary" href="index.html#kontakt">Přejít na formulář</a>
+              <a class="btn secondary" href="index.html">Zpět na homepage</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Vazba na VIAPOWER</h3>
+            <p class="muted">
+              Tým <strong>VIAPOWER</strong> se věnuje modernizaci domácností a energetickému managementu
+              (FV, baterie, řízení spotřeby, poradenství). Renovační pas bereme jako praktický rámec,
+              jak renovaci udělat chytře a etapově.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <small>
+        © <span id="y"></span> renovacnipasbudovy.cz • Provozuje
+        <a href="https://www.viapower.cz/" target="_blank" rel="noopener">VIAPOWER s.r.o.</a>
+      </small>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

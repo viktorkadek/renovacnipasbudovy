@@ -54,13 +54,10 @@
     /* HERO */
     header{
       padding:72px 0 44px;
-      min-height: 48vh;
- background:
-  linear-gradient(
-    rgba(10,20,40,0.72),
-    rgba(10,20,40,0.86)
-  ),
-  url("assets/img/hero-dotace.webp") center / cover no-repeat;
+      min-height:48vh;
+      background:
+        linear-gradient(rgba(10,20,40,0.72), rgba(10,20,40,0.86)),
+        url("assets/img/hero-dotace.webp") center / cover no-repeat;
 
       color:#fff;
       display:flex;
@@ -68,12 +65,19 @@
       border-bottom:1px solid rgba(255,255,255,.08);
     }
 
+    /* větší vertikální mezery v hero */
+    .hero-stack{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
     h1{
-      margin:0 0 18px;
+      margin:0;
       font-size: clamp(2.1rem, 4.6vw, 3.2rem);
       line-height:1.05;
       letter-spacing:-0.02em;
-      max-width: 920px;
+      max-width:920px;
     }
 
     header p{
@@ -83,7 +87,12 @@
       font-size: clamp(16px, 1.6vw, 19px);
     }
 
-    .cta{ margin-top:22px; display:flex; flex-wrap:wrap; gap:10px; }
+    .cta{
+      margin-top:6px; /* spacing už řeší hero-stack */
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
 
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
@@ -114,35 +123,30 @@
     .note{
       font-size:14px;
       color:rgba(255,255,255,.78);
-      margin-top:18px;
       font-style: italic;
-      max-width: 860px;
+      max-width:860px;
+      margin:0;
     }
 
     .breadcrumb{
-  font-size:14px;
-  margin-bottom:20px;
-  color:rgba(255,255,255,.75);
-  display:flex;
-  gap:6px;
-  align-items:center;
-}
-
-.breadcrumb a{
-  color:rgba(255,255,255,.92);
-  text-decoration:none;
-  border-bottom:1px solid rgba(255,255,255,.25);
-  transition: all .15s ease;
-}
-
-.breadcrumb a:hover{
-  border-bottom-color:rgba(255,255,255,.7);
-  color:#fff;
-}
-
-.breadcrumb span{
-  color:rgba(255,255,255,.65);
-}
+      font-size:14px;
+      color:rgba(255,255,255,.75);
+      display:flex;
+      gap:6px;
+      align-items:center;
+      margin:0 0 6px;
+    }
+    .breadcrumb a{
+      color:rgba(255,255,255,.92);
+      text-decoration:none;
+      border-bottom:1px solid rgba(255,255,255,.25);
+      transition: all .15s ease;
+    }
+    .breadcrumb a:hover{
+      border-bottom-color:rgba(255,255,255,.7);
+      color:#fff;
+    }
+    .breadcrumb span{ color:rgba(255,255,255,.65); }
 
     main{ padding:34px 0 62px; }
     section{ margin-top:28px; }
@@ -195,6 +199,7 @@
       text-decoration:none;
       font-weight:700;
       color: var(--vp-text);
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
     }
     .pill:hover{
       border-color: rgba(192,15,10,.25);
@@ -208,7 +213,12 @@
       background:#fff;
     }
     small{ color:#6B7280; }
-    small a{ color: inherit; font-weight: 700; text-decoration: none; border-bottom: 1px solid rgba(0,0,0,.15); }
+    small a{
+      color: inherit;
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(0,0,0,.15);
+    }
     small a:hover{ border-bottom-color: rgba(192,15,10,.55); }
   </style>
 </head>
@@ -216,28 +226,31 @@
 <body>
   <header>
     <div class="wrap">
+      <div class="hero-stack">
 
-      <nav class="breadcrumb">
-  <a href="index.html">Domů</a>
-  <span>/</span>
-  <span>Renovační pas a dotace</span>
-</nav>
-      
-      <h1>Renovační pas a dotace NZÚ: proč se vyplatí mít plán renovace připravený</h1>
-      <p>
-        Renovační pas (jakmile bude v praxi plně zaveden) má dávat smysl i z pohledu financování:
-        pomáhá ujasnit si postup renovace, připravit podklady a lépe navázat na podporu typu NZÚ.
-      </p>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Domů</a>
+          <span>/</span>
+          <span>Renovační pas a dotace</span>
+        </nav>
 
-      <div class="cta">
-        <a class="btn primary" href="#kontakt">Chci konzultaci</a>
-        <a class="btn secondary" href="index.html#proc">Zpět: proč pas chtít</a>
-        <a class="btn secondary" href="index.html">Zpět na homepage</a>
+        <h1>Renovační pas a dotace NZÚ: proč se vyplatí mít plán renovace připravený</h1>
+
+        <p>
+          Renovační pas (jakmile bude v praxi plně zaveden) má dávat smysl i z pohledu financování:
+          pomáhá ujasnit si postup renovace, připravit podklady a lépe navázat na podporu typu NZÚ.
+        </p>
+
+        <div class="cta">
+          <a class="btn primary" href="index.html#kontakt">Chci konzultaci</a>
+          <a class="btn secondary" href="index.html">Zpět na homepage</a>
+        </div>
+
+        <p class="note">
+          Pozn.: Informace na webu průběžně aktualizujeme podle oficiálního vývoje. Nejde o právní poradenství ani závazný výklad podmínek dotací.
+        </p>
+
       </div>
-
-      <p class="note">
-        Pozn.: Informace na webu průběžně aktualizujeme podle oficiálního vývoje. Nejde o právní poradenství ani závazný výklad podmínek dotací.
-      </p>
     </div>
   </header>
 
